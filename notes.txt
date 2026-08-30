@@ -1,0 +1,113 @@
+What is Java?"
+"Java is a high-level, class-based, object-oriented, general-purpose programming language that is designed to be portable across platforms. One of its key characteristics is that Java source code is compiled by the Java compiler into platform-independent bytecode, which is stored in .class files. This bytecode is executed by a JVM, and the JVM implementation is specific to the underlying operating system and hardware. Because the same bytecode can run on different platforms that provide a compatible JVM, Java follows the 'Write Once, Run Anywhere' principle.
+
+At runtime, the JVM loads and verifies the bytecode and executes it through its execution engine. Modern JVMs use interpretation as well as Just-In-Time compilation to improve performance by compiling frequently executed bytecode into native machine code. Java also provides automatic memory management through garbage collection, strong type checking, exception handling, multithreading support, and a rich standard library.
+
+For example, in a Spring Boot backend application, I can develop and compile the application on Windows and deploy the resulting Java application to a Linux server without changing the Java source code, provided the appropriate Java runtime environment is available on the server. This portability, along with its ecosystem, maintainability, and strong support for enterprise applications, is one of the reasons Java is widely used for backend and large-scale systems."
+
+
+"You said Java is platform independent. Is JVM platform independent?"
+
+"No. The JVM itself is platform-dependent. We have different JVM implementations for different operating systems and architectures. The Java bytecode is platform-independent, and the JVM provides the platform-specific layer that executes that bytecode on the underlying machine."
+
+
+"Explain JDK, JRE and JVM."
+
+"JDK stands for Java Development Kit, JRE stands for Java Runtime Environment, and JVM stands for Java Virtual Machine. Conceptually, the JVM is the component that executes Java bytecode. The traditional JRE consists of the JVM and the Java runtime libraries required to run Java applications. The JDK is the development kit and includes tools such as the Java compiler, along with the runtime components required to execute Java applications.
+
+When we develop a Java application, we write source code in a .java file. The JDK provides the javac compiler, which converts the source code into bytecode stored in .class files. When we execute the application using the java command, the JVM starts, loads the required classes through the Class Loader, performs verification and linking-related operations, initializes classes, and executes the bytecode through the Execution Engine.
+
+The Execution Engine can interpret bytecode and also use Just-In-Time compilation to compile frequently executed code into native machine code for better runtime performance. The JVM also provides runtime memory management and works with the garbage collector to reclaim memory from objects that are no longer reachable.
+
+For Java 11 and later, including Java 21, it's important to understand that the traditional standalone JRE packaging model is no longer the normal distribution model. We generally install a JDK distribution, which contains the runtime components needed to run Java applications. So the JDK-JRE-JVM relationship remains useful as an architectural concept, but I would not describe a modern Java 21 installation as requiring a separately installed JRE."
+
+⭐ 22. Interview Follow-Up
+
+"If JVM is responsible for platform independence, why do you say JVM is platform dependent?"
+
+"The JVM implementation is platform-dependent because it has to interact with the underlying operating system and hardware. For example, a JVM implementation for Windows and one for Linux have platform-specific components. However, both JVMs can execute the same platform-independent Java bytecode. So the platform independence comes from the bytecode being portable across JVM implementations, not from the JVM itself being platform-independent."
+
+
+
+"Explain JVM architecture."
+
+
+"JVM stands for Java Virtual Machine and it is the runtime environment responsible for executing Java bytecode. At a high level, JVM architecture consists of the Class Loader Subsystem, Runtime Data Areas, Execution Engine, and mechanisms for interacting with native code through JNI."
+
+"First, the Class Loader loads the required .class files into the JVM. The class-loading lifecycle includes loading, linking, and initialization. Linking involves verification, preparation, and resolution."
+
+"After classes are loaded, the JVM uses Runtime Data Areas for execution. The main areas include the heap, method area, JVM stacks, PC registers, and native method stacks. The heap is generally shared among threads and is primarily used for objects and arrays. Each thread has its own JVM stack, which contains stack frames created for method invocations. Each stack frame contains information such as local variables, an operand stack, and other execution-related information. Each thread also has its own PC register that tracks its current bytecode execution position."
+
+"The Execution Engine executes the bytecode. Initially, bytecode can be interpreted, allowing relatively fast startup. The JVM also uses Just-In-Time compilation to identify frequently executed or hot code and compile it into native machine code. This allows the JVM to improve runtime performance through compilation and optimization."
+
+"The JVM also manages memory and works with the garbage collector to reclaim heap memory from objects that are no longer reachable. Java can also interact with native code using JNI, which allows the JVM and Java applications to use native libraries when required."
+
+"So, in summary, the Class Loader brings classes into the JVM, Runtime Data Areas provide the memory required for execution, the Execution Engine executes and optimizes bytecode, and garbage collection manages dynamically allocated heap memory. Together these components provide the runtime environment that allows Java applications to execute efficiently and portably."
+
+27. ⭐ Follow-Up Question
+
+
+"What is the difference between Stack and Heap?"
+
+"The JVM stack is thread-specific and is primarily associated with method execution. Each method invocation creates a stack frame containing information such as local variables and the operand stack. When the method returns, its frame is removed. The heap, on the other hand, is generally shared among JVM threads and is primarily used for dynamically allocated objects and arrays. For example, in Employee employee = new Employee(), the Employee object is allocated in the heap, while the local reference variable is associated with the current method's stack frame. The heap is also managed by the garbage collector, whereas stack frames are automatically created and removed as methods are invoked and return."
+
+
+
+
+
+
+
+
+
+What are variables and data types in Java?
+
+
+
+"A variable in Java is a named storage location or program variable used to represent a value during program execution. Every variable has a declared type, which determines what kind of value it can represent and what operations are permitted on that value."
+
+"Java has two broad categories of types: primitive types and reference types. Java provides eight primitive types: byte, short, int, long, float, double, char, and boolean. Primitive variables represent primitive values directly according to Java's type system. Reference types include classes, arrays, interfaces, enums, and other object types. A reference variable holds a reference to an object rather than representing the object itself."
+
+"Java variables can also be classified based on where they are declared. A local variable is declared inside a method, constructor, or block and must be definitely assigned before it is read. An instance variable is a non-static field belonging to an object, so each object has its own instance state. A static variable belongs to the class rather than to an individual object."
+
+"Variables also have scope, which determines where they can be accessed. Their lifetime depends on the kind of variable and the runtime context. For example, a local variable is associated with a method invocation, while an instance field is part of an object's state."
+
+"Java also supports the final modifier. A final variable cannot be reassigned after it has been assigned. However, if the final variable is a reference, final prevents changing the reference, not necessarily modifying the referenced object's state."
+
+"Java also provides primitive type conversions. Widening conversions can generally happen implicitly, while narrowing conversions usually require an explicit cast and may result in data loss."
+
+45. ⭐ MTS Follow-Up: Primitive vs Reference
+
+"What is the difference between primitive and reference types?"
+
+"Primitive types are Java's eight built-in value types: byte, short, int, long, float, double, char, and boolean. A primitive variable represents a primitive value directly according to Java's type system. Reference types, on the other hand, represent objects and other reference-based entities such as arrays. A reference variable holds a reference to an object. For example, int age = 26 stores a primitive value, whereas Employee employee = new Employee() creates an Employee object and the variable employee refers to that object. A reference can also be null, whereas primitive variables cannot hold null."
+
+46. ⭐ MTS Follow-Up: Instance vs Static
+:
+"What is the difference between instance and static variables?"
+
+"An instance variable is associated with an individual object, so every object has its own instance state. A static variable is associated with the class and represents class-level state shared by the class's instances. For example, in an Employee class, name can be an instance variable because every employee has a different name, while company can be static if all employees belong to the same company. When we create two Employee objects, each object gets its own name, but they access the class-level company field."
+
+47. ⭐ MTS Follow-Up: Final Reference
+
+"Does final make an object immutable?"
+
+
+"No. The final modifier on a reference means that the reference cannot be reassigned after initialization. It does not automatically make the referenced object immutable. For example, if we write final Employee employee = new Employee(), we cannot assign another Employee object to employee, but if the Employee class has mutable fields, we can still modify those fields. Immutability is a property of the object's design, not simply the finality of the reference."
+
+
+
+What is type casting and type conversion in Java?
+
+
+"Type conversion is the process of converting a value from one compatible type to another. In Java, primitive numeric conversions are broadly classified as widening and narrowing conversions."
+
+"Widening conversion occurs when a value is converted to a broader numeric type, such as int to long or int to double. Java can perform many widening conversions implicitly because the target type can represent the source value's range. Narrowing conversion occurs when converting to a type with a smaller range or representation, such as long to int or double to int. Since information may be lost, Java normally requires an explicit cast using the syntax (targetType) value."
+
+"For example, long value = intValue is widening, while int value = (int) longValue is narrowing. Narrowing can result in truncation or other changes to the value. For floating-point to integer conversion, the fractional portion is discarded rather than rounded."
+
+"Java also performs numeric promotion during expressions. For example, byte + byte results in an int, because byte, short, and char operands are generally promoted to int for arithmetic operations. This is why byte c = a + b does not compile without an explicit cast."
+
+"One important point is that widening does not always mean exact precision preservation. For example, converting a long to float follows Java's widening conversion rules, but a float does not have enough precision to represent every possible long value exactly."
+
+"Type conversion is therefore important not only for assigning values between variables, but also for arithmetic expressions, API boundaries, database values, and object-oriented programming."
+
