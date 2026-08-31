@@ -111,3 +111,98 @@ What is type casting and type conversion in Java?
 
 "Type conversion is therefore important not only for assigning values between variables, but also for arithmetic expressions, API boundaries, database values, and object-oriented programming."
 
+/Methods
+
+"What is a method in Java?"
+
+
+
+"A method in Java is a named block of code designed to perform a specific operation. Methods help us divide a program into smaller, manageable units and provide code reusability, readability, maintainability, and separation of responsibilities."
+
+"A method can accept input through parameters and can optionally return a value to its caller. Its general structure consists of an access modifier, optional static modifier, return type, method name, parameters, and method body."
+
+"When a method is invoked, the JVM creates a stack frame for that method containing information required for its execution, including local variables and execution state. Once the method completes, its result can be returned to the caller and its stack frame is removed."
+
+"For example, in an employee-management system, instead of placing all business logic in one large method, we can have separate methods such as calculateSalary(), validateEmployee(), and calculateBonus(). This makes the application easier to understand and maintain."
+
+"Methods are also fundamental to DSA because we generally implement individual algorithms as methods, such as linearSearch(), findMaximum(), or reverseArray(). This allows the algorithm to be independently tested and reused."
+
+"Java also supports method overloading, where multiple methods can have the same name but different parameter lists. This is compile-time polymorphism."
+
+"One particularly important concept is parameter passing. Java is strictly pass-by-value. For primitive types, the actual primitive value is copied. For objects, the reference value is copied, so both the original reference and the parameter can refer to the same object. This is why modifying the object's state inside the method can be visible to the caller, while assigning a new object to the parameter does not change the caller's reference."
+
+"Overall, methods provide the basic mechanism for decomposing Java programs into reusable and independently testable units, and understanding them deeply is essential before moving into OOP, recursion, and DSA."
+
+
+
+//Loops
+
+"Explain loops in Java."
+
+
+
+"A loop in Java is a control-flow mechanism used to repeatedly execute a block of code while a particular condition is satisfied. Loops are useful when we need to perform the same operation multiple times, especially when processing collections, arrays, user input, or repeated business operations."
+
+"Java provides three traditional looping constructs: for, while, and do-while, along with the enhanced for loop for iterating over arrays and iterable collections."
+
+"A for loop is generally useful when the initialization, termination condition, and update are closely related and the number of iterations is known or controlled by a counter. A while loop is useful when the number of iterations depends more directly on a condition and may not be known beforehand. A do-while loop is different because its body executes at least once before the condition is checked."
+
+"During execution, a loop repeatedly evaluates its condition. If the condition is true, the loop body executes, followed by the appropriate update or next condition check. When the condition becomes false, control moves outside the loop."
+
+"Loops are particularly important in DSA because most array and string algorithms require traversal. For example, finding the maximum element in an array requires iterating through the elements and comparing each element with the current maximum."
+
+"Nested loops are also important for understanding time complexity. A single loop that processes n elements is generally O(n), while two independent nested loops may result in O(n²), depending on their bounds."
+
+"Java also provides break, continue, and return for controlling execution. break terminates the current loop, continue skips the current iteration, and return exits the entire method."
+
+//arrays
+
+"What is an array in Java?"
+
+A strong interview answer:
+
+"An array in Java is a fixed-size object that stores multiple elements of the same type. Each element is associated with an integer index, starting from zero, which allows direct access to an element."
+
+"For example, if I have an employee salary array containing five salaries, I can access the third salary using salaries[2]. Because the index is used to directly identify the element, array access by index is generally O(1)."
+
+"Arrays have a fixed length once they are created. If I create new int[5], the array has exactly five positions and its size cannot be changed. If dynamic resizing is required, I would generally use a collection such as ArrayList."
+
+"Internally, an array is an object, and the array variable holds a reference to that object. When an array is assigned to another variable, such as int[] b = a, the reference is copied rather than the array itself. Therefore both variables refer to the same array."
+
+"Java also supports multidimensional arrays. Technically, a declaration such as int[][] matrix represents an array whose elements are themselves arrays. This allows Java to support jagged arrays where different rows can have different lengths."
+
+"Arrays are fundamental to DSA because many algorithms operate directly on indexed collections. Common operations include traversal, linear search, finding minimum and maximum values, reversing an array, sorting, and using two-pointer or sliding-window techniques."
+
+"The main advantages of arrays are constant-time indexed access, simple structure, and efficient traversal. The main limitation is their fixed size, and inserting or deleting elements in the middle generally requires shifting elements."
+
+//Strings
+
+Why is String immutable in Java?
+
+"String is immutable in Java, which means once a String object is created, its character sequence cannot be modified. If we perform an operation such as concatenation, replacement, or converting it to uppercase, Java returns or creates another String instead of modifying the original object."
+
+"There are several important reasons for this design. First, Strings are heavily used for security-sensitive information such as URLs, file paths, class names and other configuration or authentication-related values. Immutability prevents the value from unexpectedly changing after it has been created."
+
+"Second, Java can safely share String literals through the String Constant Pool. For example, if two variables contain the literal \"Java\", they can reference the same pooled String object. If Strings were mutable, modifying that shared object could affect every reference pointing to it. Immutability makes this sharing safe."
+
+"Third, Strings are commonly used as keys in hash-based collections such as HashMap. Hash-based collections depend on a stable hash code. If the contents of a key could change after insertion, its hash code could change and the map might no longer be able to locate the key correctly. Since Strings are immutable, their value and hash code remain stable."
+
+"Immutability also makes Strings naturally safe to share between threads because their state cannot be modified. Overall, String immutability provides security, safe pooling, stable hashing, easier sharing, and predictable behavior."
+
+29. Detailed Interview Explanation — == vs .equals()
+
+"== and .equals() serve different purposes when working with Strings. For objects, == compares references, meaning it checks whether two variables refer to the same object. The equals() method of String compares the actual character contents."
+
+"For example, two String literals with the same value can refer to the same object in the String Constant Pool, so == may return true. However, if I create two Strings using new String(\"Java\"), they represent separate objects, so == returns false even though their contents are identical. equals() returns true because it compares their contents."
+
+"Therefore, when I want to check whether two Strings contain the same text, I use equals(), not ==."
+
+30. Detailed Interview Explanation — StringBuilder
+
+"StringBuilder is a mutable sequence of characters that is useful when we need to perform repeated modifications to text. Unlike String, modifying a String doesn't change the existing object because String is immutable. Repeated concatenation can therefore create multiple intermediate String objects."
+
+"StringBuilder maintains a mutable character sequence and provides operations such as append, insert, delete, and reverse. This makes it more efficient for scenarios where we repeatedly construct or modify a String, especially inside loops."
+
+"For example, if I'm generating a large response, constructing a CSV line, or building a String inside a loop, I would generally prefer StringBuilder instead of repeatedly using + on Strings."
+
+"StringBuilder is not synchronized, so it is generally preferred for single-threaded use. StringBuffer provides synchronized methods and is designed for thread-safe mutable String operations, although StringBuilder is usually the better choice for modern single-threaded code."
