@@ -38,23 +38,85 @@ public class StringDSADemo {
         return  true;
     }
 
+    public static void findDuplicateCharacters(String input){
+        int[] frequency = new int[26];
+
+        //count characters
+        for(char charcter : input.toCharArray()){
+            frequency[charcter - 'a']++;
+        }
+
+        //Print Duplicate Values
+        for (int i =0;i<frequency.length;i++){
+            System.out.println(
+                    (char)('a'+i) + " : " + frequency[i]
+            );
+        }
+    }
+
+
+
+
+
+
+    public static Character firstNonRepeatingCharacter(String input){
+        int[] frequency = new int[26];
+
+        //count freq
+
+        for (char character : input.toCharArray()){
+            frequency[character-'a']++;
+
+        }
+        for (char character : input.toCharArray()){
+            if(frequency[character - 'a']==1){
+                return character;
+            }
+        }
+        return  null;
+    }
+
+    public static boolean areAnagrams(String first,String second){
+        //Length check
+        if(first.length()!=second.length()){
+            return false;
+        }
+
+        int[] frequency = new int[26];
+
+        //add fre from first sring
+        for(char character : first.toCharArray()){
+            frequency[character-'a']++;
+        }
+
+        //sub
+
+        for (char character : second.toCharArray()){
+            frequency[character-'a']--;
+        }
+
+        //check all freq
+        for (int count : frequency){
+            if(count!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 
 
 
     public static void main(String[] args) {
-        String input = "Java";
-        String result = reverseUsingTwoPointers(input);
+        String first = "listen";
+        String second = "silent";
 
-        System.out.println("Input : " + input);
-        System.out.println("Output : " + result);
+        boolean result = areAnagrams(first,second);
 
-        String input1 = "level";
-        Boolean result1 = isPalindrome(input1);
-
-        System.out.println("Input : " + input1);
-        System.out.println("Output : " + result1);
-
+        System.out.println("First String : "+first);
+        System.out.println("Second String :" + second);
+        System.out.println("Are Anagrams : " +result);
     }
 
 }

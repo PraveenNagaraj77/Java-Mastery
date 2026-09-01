@@ -206,3 +206,9 @@ Why is String immutable in Java?
 "For example, if I'm generating a large response, constructing a CSV line, or building a String inside a loop, I would generally prefer StringBuilder instead of repeatedly using + on Strings."
 
 "StringBuilder is not synchronized, so it is generally preferred for single-threaded use. StringBuffer provides synchronized methods and is designed for thread-safe mutable String operations, although StringBuilder is usually the better choice for modern single-threaded code."
+
+Why StringBuilder is faster than String?
+
+
+
+"String is immutable, so every modification creates a new String object. If we repeatedly concatenate Strings, many intermediate objects are created, increasing memory usage and reducing performance. StringBuilder is mutable and internally maintains a resizable character array, so modifications happen on the same object. Therefore, StringBuilder is more efficient for repeated String operations."
