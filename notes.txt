@@ -212,3 +212,73 @@ Why StringBuilder is faster than String?
 
 
 "String is immutable, so every modification creates a new String object. If we repeatedly concatenate Strings, many intermediate objects are created, increasing memory usage and reducing performance. StringBuilder is mutable and internally maintains a resizable character array, so modifications happen on the same object. Therefore, StringBuilder is more efficient for repeated String operations."
+
+# SOLID — Short Notes
+
+**SOLID** = 5 principles of Object-Oriented Design used to create **maintainable, flexible, scalable, and loosely coupled code**.
+
+### S — Single Responsibility Principle (SRP)
+
+> A class should have **one responsibility and one reason to change**.
+
+**Remember:** One class → One responsibility.
+
+---
+
+### O — Open/Closed Principle (OCP)
+
+> Software should be **open for extension but closed for modification**.
+
+Add new behavior without unnecessarily changing existing code.
+
+**Remember:** Extend → Don't modify.
+
+---
+
+### L — Liskov Substitution Principle (LSP)
+
+> A child class should be **replaceable for its parent class** without breaking the program.
+
+**Remember:** Child must honor the parent's contract.
+
+---
+
+### I — Interface Segregation Principle (ISP)
+
+> A class should **not be forced to implement methods it doesn't need**.
+
+Prefer small, focused interfaces.
+
+**Remember:** Don't create unnecessarily large interfaces.
+
+---
+
+### D — Dependency Inversion Principle (DIP)
+
+> High-level modules should depend on **abstractions**, not concrete implementations.
+
+**Remember:** Depend on interfaces, not implementations.
+
+---
+
+## 🔥 One-Line Revision
+
+```text
+S → One responsibility
+O → Extend, don't modify
+L → Child can replace parent
+I → Small focused interfaces
+D → Depend on abstractions
+```
+
+## Interview Keywords
+
+```text
+SOLID
+ ↓
+Maintainability
+Loose Coupling
+Flexibility
+Testability
+Extensibility
+```
