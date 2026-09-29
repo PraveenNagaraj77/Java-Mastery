@@ -1,6 +1,4 @@
-Absolutely. Since **Java 8 is now complete**, this should be your single `Java8.md` last-minute revision file, following the same style as your `Collections.md`.
 
-````
 # ☕ Java 8+ — Last-Minute Revision Cheat Sheet
 
 > **Purpose:** Last-minute interview revision + quickly identify which Java 8 feature/pattern to use from a problem statement.
@@ -4403,4 +4401,3 @@ The goal is to see:
 ```
 
 > **Java 8 mastery = reading the requirement → identifying the pattern → choosing the simplest efficient operation.**
-````
